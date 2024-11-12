@@ -21,6 +21,6 @@ namespace MyFile {
     void writeFile(const FunctionCallbackInfo<Value> &args);
     string generateRandomString(size_t length);
     string generateRandomFilename();
-    void log(V8_ARGS);
+    void say(V8_ARGS);
     string formatOut(V8_ARGS);
 }

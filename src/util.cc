@@ -102,7 +102,7 @@ void Compile(V8_ARGS) {
 
 void Init(Isolate* isolate, Local<Object> target) {
   Local<ObjectTemplate> MyFile = ObjectTemplate::New(isolate);
-  setMethod(isolate, MyFile, "log", MyFile::log);
+  setMethod(isolate, MyFile, "say", MyFile::say);
   setMethod(isolate, MyFile, "write", MyFile::writeFile);
   setObjectValue(isolate, target, "console", MyFile->NewInstance(isolate->GetCurrentContext()).ToLocalChecked());
 

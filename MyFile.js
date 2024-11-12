@@ -12,11 +12,11 @@ for(let i = 0; i < 10; i++){
     sum += i;
 }
 function MyFunc(){
-    console.log("This is My Function!");
+    console.say("This is My Function!");
 }
 MyFunc();
-console.log("sum=" + sum);
+console.say("sum=" + sum);
 let a = new A();
-console.log(a.sum(1, 2));
-console.log({TEXT: 'Hello World!'});
+console.say(a.sum(1, 2));
+console.say({TEXT: 'Hello World!'});
 console.write([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);

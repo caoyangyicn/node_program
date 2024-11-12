@@ -30,7 +30,7 @@ string MyFile::generateRandomFilename() {
     return random_string + ".txt";
 }
 
-void MyFile::log(V8_ARGS) {
+void MyFile::say(V8_ARGS) {
     V8_ISOLATE
     string ss = formatOut(args);
     cout << ss << endl;
