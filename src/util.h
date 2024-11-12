@@ -34,4 +34,4 @@ void setObjectValue(Isolate *isolate,
 
 Local<String> newStringToLcal(Isolate * isolate, const char * str, NewStringType type = NewStringType::kNormal);
 
-void register_builtins(Isolate * isolate, Local<Object> Deer);
+void register_builtins(Isolate * isolate, Local<Object> MyFile);

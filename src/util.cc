@@ -108,8 +108,8 @@ void Init(Isolate* isolate, Local<Object> target) {
 
 }
 
-void register_builtins(Isolate * isolate, Local<Object> Deer) {
+void register_builtins(Isolate * isolate, Local<Object> Myfile) {
     Local<Object> target = Object::New(isolate);
     Init(isolate, target);
-    setObjectValue(isolate, Deer, "buildin", target);
+    setObjectValue(isolate, Myfile, "buildin", target);
 }

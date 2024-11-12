@@ -1,0 +1,3 @@
+/home/ubuntu/.ssh/node_program/build/CMakeFiles/my_node.dir
+/home/ubuntu/.ssh/node_program/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/.ssh/node_program/build/CMakeFiles/rebuild_cache.dir
