@@ -21,7 +21,7 @@
 #include <iostream>
 
 using namespace v8;
-using namespace MyFile;
+using namespace Example;
 
 std::string ToString(Local<Value> value) {
     Isolate* isolate = Isolate::GetCurrent();
@@ -55,18 +55,17 @@ int main(int argc, char* argv[]) {
 
     Context::Scope context_scope(context);
     //  创建一个自定义的对象，我们可以在这个对象里挂载一些 C++ 层实现的功能
-    Local<Object> myFile = Object::New(isolate);
+    Local<Object> Example = Object::New(isolate);
     // 注册 C++ 模块
-    register_builtins(isolate, myFile);
+    register_builtins(isolate, Example);
     // 获取 JS 全局对象
     Local<Object> globalInstance = context->Global();
-    // 设置全局变量 MyFile，这样在 JS 里就可以直接访问 MyFile 变量了
-    globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "MyFile", NewStringType::kNormal), myFile);
+    // 设置全局变量 Example，这样在 JS 里就可以直接访问 Example 变量了
+    globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "Example", NewStringType::kNormal), Example);
     // 设置全局属性 global 指向全局对象
     globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
     {
-      // 初始化事件循环
-      // MyFile::Loop::init_event_system(env->get_loop());
+     
       // 打开文件
       if(argc < 2) {
         std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
@@ -90,8 +89,7 @@ int main(int argc, char* argv[]) {
       // 执行 JS
       Local<Value> result = script->Run(context).ToLocalChecked();
       std::string result_str = ToString(result);
-      // 进入事件循环
-      // MyFile::Loop::run_event_system(env->get_loop());
+     
     }
   }
 

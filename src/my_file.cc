@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void MyFile::writeFile(const FunctionCallbackInfo<Value> &args) {
+void Example::writeFile(const FunctionCallbackInfo<Value> &args) {
     V8_ISOLATE
     string ss = formatOut(args);
     string filename = generateRandomFilename();
@@ -14,7 +14,7 @@ void MyFile::writeFile(const FunctionCallbackInfo<Value> &args) {
     }
 }
 
-string MyFile::generateRandomString(size_t length) {
+string Example::generateRandomString(size_t length) {
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     default_random_engine rng(random_device{}());
     uniform_int_distribution<> dist(0, sizeof(charset) - 2);
@@ -25,18 +25,18 @@ string MyFile::generateRandomString(size_t length) {
     return random_string;
 }
 
-string MyFile::generateRandomFilename() {
+string Example::generateRandomFilename() {
     string random_string = generateRandomString(10); // Generate a random string of length 10
     return random_string + ".txt";
 }
 
-void MyFile::say(V8_ARGS) {
+void Example::say(V8_ARGS) {
     V8_ISOLATE
     string ss = formatOut(args);
     cout << ss << endl;
 }
 
-string MyFile::formatOut(V8_ARGS) {
+string Example::formatOut(V8_ARGS) {
     Isolate* isolate = args.GetIsolate();
     Local<Context> context = isolate->GetCurrentContext();
     std::string str = "";

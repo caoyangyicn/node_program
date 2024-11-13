@@ -1,6 +1,6 @@
 const {
-    console
-} = MyFile.buildin;
+    myFunc
+} = Example.buildin;
 
 class A{
     sum(a, b){
@@ -11,12 +11,12 @@ let sum = 0;
 for(let i = 0; i < 10; i++){
     sum += i;
 }
-function MyFunc(){
-    console.say("This is My Function!");
+function func(){
+    myFunc.say("This is My Function!");
 }
-MyFunc();
-console.say("sum=" + sum);
+func();
+myFunc.say("sum=" + sum);
 let a = new A();
-console.say(a.sum(1, 2));
-console.say({TEXT: 'Hello World!'});
-console.write([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+myFunc.say(a.sum(1, 2));
+myFunc.say(JSON.stringify({TEXT: 'Hello World!'}));
+myFunc.write([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);

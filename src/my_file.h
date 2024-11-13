@@ -17,7 +17,7 @@ using namespace v8;
 #define V8_ARGS const FunctionCallbackInfo<Value> &args
 #define V8_ISOLATE Isolate * isolate = args.GetIsolate();
 #define V8_CONTEXT Local<Context> context = args.GetIsolate()->GetCurrentContext();
-namespace MyFile {
+namespace Example {
     void writeFile(const FunctionCallbackInfo<Value> &args);
     string generateRandomString(size_t length);
     string generateRandomFilename();

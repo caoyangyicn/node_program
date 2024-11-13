@@ -101,15 +101,15 @@ void Compile(V8_ARGS) {
 }
 
 void Init(Isolate* isolate, Local<Object> target) {
-  Local<ObjectTemplate> MyFile = ObjectTemplate::New(isolate);
-  setMethod(isolate, MyFile, "say", MyFile::say);
-  setMethod(isolate, MyFile, "write", MyFile::writeFile);
-  setObjectValue(isolate, target, "console", MyFile->NewInstance(isolate->GetCurrentContext()).ToLocalChecked());
+  Local<ObjectTemplate> Example = ObjectTemplate::New(isolate);
+  setMethod(isolate, Example, "say", Example::say);
+  setMethod(isolate, Example, "write", Example::writeFile);
+  setObjectValue(isolate, target, "myFunc", Example->NewInstance(isolate->GetCurrentContext()).ToLocalChecked());
 
 }
 
-void register_builtins(Isolate * isolate, Local<Object> Myfile) {
+void register_builtins(Isolate * isolate, Local<Object> Example) {
     Local<Object> target = Object::New(isolate);
     Init(isolate, target);
-    setObjectValue(isolate, Myfile, "buildin", target);
+    setObjectValue(isolate, Example, "buildin", target);
 }
