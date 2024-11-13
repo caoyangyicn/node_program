@@ -66,7 +66,7 @@ int main(int argc, char* argv[]) {
     globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
     {
      
-      // 打开文件
+      // 打开 JS 文件,将 JS 文件内容读取到内存
       if(argc < 2) {
         std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
         return 1;
@@ -74,12 +74,11 @@ int main(int argc, char* argv[]) {
       char* filename = argv[1];
       int fd = open(filename, 0, O_RDONLY);
       struct stat info;
-      // 取得文件信息
       fstat(fd, &info);
-      // 分配内存保存文件内容
       char *ptr = (char *)malloc(info.st_size + 1);
       read(fd, (void *)ptr, info.st_size);
       ptr[info.st_size] = '\0';
+
       // 要执行的 JS 代码
       Local<String> source = String::NewFromUtf8(isolate, ptr, NewStringType::kNormal, info.st_size).ToLocalChecked();
       // 编译
