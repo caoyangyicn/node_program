@@ -2,7 +2,7 @@ const {
     myFunc
 } = Example.buildin;
 
-// 创建对象的语法
+// 创建对象
 class A{
     sum(a, b){
         return  a + b;
@@ -15,6 +15,7 @@ myFunc.say(a.sum(1, 2));
 let sum = 0;
 for(let i = 0; i < 10; i++){
     sum += i;
+    myFunc.say("i= " + i);
 }
 myFunc.say("sum=" + sum);
 
