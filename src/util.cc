@@ -65,9 +65,9 @@ Local<String> newStringToLcal(Isolate * isolate, const char * str, NewStringType
     return String::NewFromUtf8(isolate, str, type, strlen(str)).ToLocalChecked();
 }
 
-void Compile(V8_ARGS) {
-    V8_ISOLATE
-    V8_CONTEXT
+void Compile(const FunctionCallbackInfo<Value> &args) {
+    Isolate* isolate = args.GetIsolate();
+    Local<Context> context = args.GetIsolate()->GetCurrentContext();
     String::Utf8Value filename(isolate, args[0].As<String>());
     int fd = open(*filename, 0 , O_RDONLY);
     std::string content;
