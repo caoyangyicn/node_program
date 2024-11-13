@@ -41,4 +41,3 @@ void Example::say(const FunctionCallbackInfo<Value> &args) {
     const char* cstr = ToCString(str);
     printf("%s\n", cstr);
 }
-
