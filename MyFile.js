@@ -27,3 +27,4 @@ func();
 
 //对象输出
 myFunc.say(JSON.stringify({TEXT: 'Hello World!'}));
+myFunc.write(JSON.stringify({TEXT: 'Hello World!'}), "test.txt");

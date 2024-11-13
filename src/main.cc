@@ -57,7 +57,6 @@ int main(int argc, char* argv[]) {
     // 设置全局属性 global 指向全局对象
     globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
     {
-     
       // 打开 JS 文件,将 JS 文件内容读取到内存
       if(argc < 2) {
         std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
@@ -79,8 +78,8 @@ int main(int argc, char* argv[]) {
       free(ptr);
       // 执行 JS
       Local<Value> result = script->Run(context).ToLocalChecked();
-      std::string result_str = ToString(result);
-     
+      String::Utf8Value utf8(isolate, result);
+      std::string result_str = *utf8;
     }
   }
 

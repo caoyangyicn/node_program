@@ -15,8 +15,6 @@ link_directories(lib)
 # Link the required libraries
 target_link_libraries(my_node PRIVATE
     v8_monolith
-    v8_libbase
-    v8_libplatform
     uv
     dl
     pthread
