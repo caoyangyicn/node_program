@@ -22,10 +22,6 @@ v8::Local<v8::FunctionTemplate> NewFunctionTemplate(
             v8::SideEffectType side_effect = v8::SideEffectType::kHasSideEffect,
             const v8::CFunction* c_function = nullptr);
 
-void SetMethod(Local<v8::Context> context,
-               Local<v8::Object> that,
-               const char* name,
-               v8::FunctionCallback callback);
 
 void setObjectValue(Isolate *isolate, 
                 Local<Object> 
@@ -35,3 +31,8 @@ void setObjectValue(Isolate *isolate,
 Local<String> newStringToLcal(Isolate * isolate, const char * str, NewStringType type = NewStringType::kNormal);
 
 void register_builtins(Isolate * isolate, Local<Object> Example);
+
+void setMethod(Isolate *isolate, 
+                Local<ObjectTemplate> 
+                recv, const char *name, 
+                FunctionCallback callback);

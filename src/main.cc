@@ -46,16 +46,14 @@ int main(int argc, char* argv[]) {
     Local<Context> context = Context::New(isolate, nullptr, global);
 
     Context::Scope context_scope(context);
-    //  创建一个自定义的对象，我们可以在这个对象里挂载一些 C++ 层实现的功能
-    Local<Object> Example = Object::New(isolate);
-    // 注册 C++ 模块
-    register_builtins(isolate, Example);
+
+    
     // 获取 JS 全局对象
     Local<Object> globalInstance = context->Global();
-    // 设置全局变量 Example，这样在 JS 里就可以直接访问 Example 变量了
-    globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "Example", NewStringType::kNormal), Example);
+    // 注册 C++ 模块
+    register_builtins(isolate, globalInstance);
     // 设置全局属性 global 指向全局对象
-    globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
+    // globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
     {
       // 打开 JS 文件,将 JS 文件内容读取到内存
       if(argc < 2) {

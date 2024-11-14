@@ -1,7 +1,4 @@
-const {
-    myFunc
-} = Example.buildin;
-
+example.say("Hello World!");
 // 创建对象
 class A{
     sum(a, b){
@@ -9,22 +6,22 @@ class A{
     }
 }
 let a = new A();
-myFunc.say(a.sum(1, 2));
+example.say(a.sum(1, 2));
 
 // 循环语句
 let sum = 0;
 for(let i = 0; i < 10; i++){
     sum += i;
-    myFunc.say("i= " + i);
+    example.say("i= " + i);
 }
-myFunc.say("sum=" + sum);
+example.say("sum=" + sum);
 
 // 函数
 function func(){
-    myFunc.say("This is My Function!");
+    example.say("This is My Function!");
 }
 func();
 
 //对象输出
-myFunc.say(JSON.stringify({TEXT: 'Hello World!'}));
-myFunc.write(JSON.stringify({TEXT: 'Hello World!'}), "test.txt");
+example.say(JSON.stringify({TEXT: 'Hello World!'}));
+example.write("test.txt", JSON.stringify({TEXT: 'Hello World!'}));
