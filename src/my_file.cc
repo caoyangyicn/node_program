@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Example::writeFile(const FunctionCallbackInfo<Value> &args) {
+void Example::WriteFile(const FunctionCallbackInfo<Value> &args) {
     Isolate* isolate = args.GetIsolate();
     v8::String::Utf8Value str(isolate, args[1]);
     v8::String::Utf8Value path(isolate, args[0]);
@@ -14,7 +14,7 @@ void Example::writeFile(const FunctionCallbackInfo<Value> &args) {
     }
 }
 
-void Example::say(const FunctionCallbackInfo<Value> &args) {
+void Example::print(const FunctionCallbackInfo<Value> &args) {
     Isolate* isolate = args.GetIsolate();
     v8::String::Utf8Value str(isolate, args[0]);
     printf("%s\n", *str);
