@@ -41,8 +41,8 @@ void setObjectValue(Isolate *isolate,
 void register_builtins(Isolate* isolate, Local<Object> global) {
     // 创建 Example 对象模板
     Local<ObjectTemplate> Example = ObjectTemplate::New(isolate);
-    setMethod(isolate, Example, "say", Example::say);
-    setMethod(isolate, Example, "write", Example::writeFile);
+    setMethod(isolate, Example, "print", Example::print);
+    setMethod(isolate, Example, "prite", Example::WriteFile);
 
     // 将 Example 对象挂到 global 对象上
     Local<Object> exampleInstance = Example->NewInstance(isolate->GetCurrentContext()).ToLocalChecked();
