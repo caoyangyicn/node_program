@@ -16,9 +16,6 @@ using namespace v8;
 
 #define V8_CONTEXT Local<Context> context = args.GetIsolate()->GetCurrentContext();
 namespace Example {
-    void writeFile(const FunctionCallbackInfo<Value> &args);
-    string generateRandomString(size_t length);
-    string generateRandomFilename();
-    void say(const FunctionCallbackInfo<Value> &args);
-    string formatOut(const FunctionCallbackInfo<Value> &args);
+    void WriteFile(const FunctionCallbackInfo<Value> &args);
+    void Print(const FunctionCallbackInfo<Value> &args);
 }
