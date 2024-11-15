@@ -12,25 +12,10 @@
 
 using namespace v8;
 
-
-
-v8::Local<v8::FunctionTemplate> NewFunctionTemplate(
-            v8::Isolate* isolate,
-            v8::FunctionCallback callback = nullptr,
-            v8::Local<v8::Signature> signature = v8::Local<v8::Signature>(),
-            v8::ConstructorBehavior behavior = v8::ConstructorBehavior::kAllow,
-            v8::SideEffectType side_effect = v8::SideEffectType::kHasSideEffect,
-            const v8::CFunction* c_function = nullptr);
-
-
 void setObjectValue(Isolate *isolate, 
                 Local<Object> 
                 recv, const char *name, 
                 Local<Value> value);
-
-Local<String> newStringToLcal(Isolate * isolate, const char * str, NewStringType type = NewStringType::kNormal);
-
-void register_builtins(Isolate * isolate, Local<Object> Example);
 
 void setMethod(Isolate *isolate, 
                 Local<ObjectTemplate> 

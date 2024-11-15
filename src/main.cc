@@ -15,22 +15,24 @@
 using namespace v8;
 using namespace Example;
 
-std::string ToString(Local<Value> value) {
-    Isolate* isolate = Isolate::GetCurrent();
-    String::Utf8Value utf8(isolate, value);
-    return *utf8 ? *utf8 : "null";
+void register_builtins(Isolate* isolate, Local<Object> global) {
+    // 创建 Example 对象模板
+    Local<ObjectTemplate> Example = ObjectTemplate::New(isolate);
+    setMethod(isolate, Example, "print", Example::Print);
+    setMethod(isolate, Example, "writeFile", Example::WriteFile);
+
+    // 将 Example 对象挂到 global 对象上
+    Local<Object> exampleInstance = Example->NewInstance(isolate->GetCurrentContext()).ToLocalChecked();
+    global->Set(isolate->GetCurrentContext(), String::NewFromUtf8(isolate, "example", NewStringType::kNormal).ToLocalChecked(), exampleInstance).FromJust();
 }
 
 int main(int argc, char* argv[]) {
- // 不需要输出缓冲，可以实时看到代码里的输出
-  setvbuf(stdout, nullptr, _IONBF, 0);
-  setvbuf(stderr, nullptr, _IONBF, 0);
   // V8 的一些通用初始化逻辑
-  v8::V8::InitializeICUDefaultLocation(argv[0]);
-  v8::V8::InitializeExternalStartupData(argv[0]);
+  V8::InitializeICUDefaultLocation(argv[0]);
+  V8::InitializeExternalStartupData(argv[0]);
   std::unique_ptr<Platform> platform = platform::NewDefaultPlatform();
-  v8::V8::InitializePlatform(platform.get());
-  v8::V8::Initialize();
+  V8::InitializePlatform(platform.get());
+  V8::Initialize();
   // 创建 Isolate 时传入的参数
   Isolate::CreateParams create_params;
   create_params.array_buffer_allocator = ArrayBuffer::Allocator::NewDefaultAllocator();
@@ -52,8 +54,7 @@ int main(int argc, char* argv[]) {
     Local<Object> globalInstance = context->Global();
     // 注册 C++ 模块
     register_builtins(isolate, globalInstance);
-    // 设置全局属性 global 指向全局对象
-    // globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
+    
     {
       // 打开 JS 文件,将 JS 文件内容读取到内存
       if(argc < 2) {
@@ -67,7 +68,6 @@ int main(int argc, char* argv[]) {
       char *ptr = (char *)malloc(info.st_size + 1);
       read(fd, (void *)ptr, info.st_size);
       ptr[info.st_size] = '\0';
-
       // 要执行的 JS 代码
       Local<String> source = String::NewFromUtf8(isolate, ptr, NewStringType::kNormal, info.st_size).ToLocalChecked();
       // 编译
@@ -86,3 +86,5 @@ int main(int argc, char* argv[]) {
   delete create_params.array_buffer_allocator;
   return 0;
 }
+
+
