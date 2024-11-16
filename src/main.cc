@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include "my_file.h"
-#include "util.h"
 #include <iostream>
 
 using namespace v8;
@@ -18,8 +17,15 @@ using namespace Example;
 void register_builtins(Isolate* isolate, Local<Object> global) {
     // 创建 Example 对象模板
     Local<ObjectTemplate> Example = ObjectTemplate::New(isolate);
-    setMethod(isolate, Example, "print", Example::Print);
-    setMethod(isolate, Example, "writeFile", Example::WriteFile);
+    // 设置 Example 对象的方法
+    Example->Set(
+      String::NewFromUtf8(isolate, "print", NewStringType::kNormal).ToLocalChecked(),
+      FunctionTemplate::New(isolate, Example::Print)
+    );
+    Example->Set(
+      String::NewFromUtf8(isolate, "writeFile", NewStringType::kNormal).ToLocalChecked(),
+      FunctionTemplate::New(isolate, Example::WriteFile)
+    );
 
     // 将 Example 对象挂到 global 对象上
     Local<Object> exampleInstance = Example->NewInstance(isolate->GetCurrentContext()).ToLocalChecked();
@@ -49,7 +55,6 @@ int main(int argc, char* argv[]) {
 
     Context::Scope context_scope(context);
 
-    
     // 获取 JS 全局对象
     Local<Object> globalInstance = context->Global();
     // 注册 C++ 模块

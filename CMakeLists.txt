@@ -9,7 +9,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(. include)
 
 # Add the executable
-add_executable(my_node src/main.cc src/my_file.cc src/util.cc)
+file(GLOB SOURCES "src/*.cc")
+add_executable(my_node ${SOURCES})
+
+# add_executable(my_node src/main.cc src/my_file.cc src/util.cc)
 link_directories(lib)
 
 # Link the required libraries
