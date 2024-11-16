@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
     {
       // 打开 JS 文件,将 JS 文件内容读取到内存
       if(argc < 2) {
-        std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
+        fprintf(stdout, "Usage: %s filename\n", argv[0]);
         return 1;
       }
       char* filename = argv[1];
