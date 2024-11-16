@@ -8,30 +8,26 @@
 #include "include/v8-local-handle.h"
 #include "include/v8-primitive.h"
 #include "include/v8-script.h"
-#include "my_file.h"
 
 using namespace v8;
 
+#define MV(module) \
+    module::Initialize(isolate, global, context);
 
 
-v8::Local<v8::FunctionTemplate> NewFunctionTemplate(
-            v8::Isolate* isolate,
-            v8::FunctionCallback callback = nullptr,
-            v8::Local<v8::Signature> signature = v8::Local<v8::Signature>(),
-            v8::ConstructorBehavior behavior = v8::ConstructorBehavior::kAllow,
-            v8::SideEffectType side_effect = v8::SideEffectType::kHasSideEffect,
-            const v8::CFunction* c_function = nullptr);
+#define MOLEULES_LIST(V) \
+    V(Console1);
 
-void SetMethod(Local<v8::Context> context,
-               Local<v8::Object> that,
-               const char* name,
-               v8::FunctionCallback callback);
 
-void setObjectValue(Isolate *isolate, 
-                Local<Object> 
+
+
+
+
+
+    
+void setMethod(Isolate *isolate, 
+                Local<ObjectTemplate> 
                 recv, const char *name, 
-                Local<Value> value);
+                FunctionCallback callback);
 
-Local<String> newStringToLcal(Isolate * isolate, const char * str, NewStringType type = NewStringType::kNormal);
-
-void register_builtins(Isolate * isolate, Local<Object> Deer);
+void register_builtins(Isolate * isolate, Local<Object> global, Local<Context> context);
