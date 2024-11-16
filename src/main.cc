@@ -61,8 +61,6 @@ int main(int argc, char* argv[]) {
     Local<Object> globalInstance = context->Global();
      // 注册 C++ 模块
     register_builtins(isolate, globalInstance, context);
-    // 设置全局变量 MyFile，这样在 JS 里就可以直接访问 MyFile 变量了
-    // globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "MyFile", NewStringType::kNormal), myFile);
     // 设置全局属性 global 指向全局对象
     globalInstance->Set(context, String::NewFromUtf8Literal(isolate, "global", v8::NewStringType::kNormal), globalInstance).Check();
     {

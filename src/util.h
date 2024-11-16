@@ -16,15 +16,11 @@ using namespace v8;
 
 
 #define MOLEULES_LIST(V) \
-    V(Console1);
+    V(Console1);       
 
 
 
 
-
-
-
-    
 void setMethod(Isolate *isolate, 
                 Local<ObjectTemplate> 
                 recv, const char *name, 
